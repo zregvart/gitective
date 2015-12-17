@@ -1,0 +1,8 @@
+target
+bin
+*~
+.settings/
+.pmd
+.project
+.fbprefs
+.classpath
