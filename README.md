@@ -1,11 +1,3 @@
-:rotating_light::rotating_light::rotating_light:
-
-**This library is no longer maintained or updated. You should fork it and release
-your own version to Maven Central if you need updates for new features or bug
-fixes.**
-
-:rotating_light::rotating_light::rotating_light:
-
 # gitective - Find the commits you're looking for
 
 gitective is a Java library built on top of [JGit](http://www.eclipse.org/jgit)
@@ -13,13 +5,13 @@ that makes investigating Git repositories simpler and easier.  Gitective makes
 it straight-forward to find interesting commits in a Git repository through
 combining the included filters.
 
-This library is available from [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.gitective%22%20AND%20a%3A%22gitective-core%22)
+This library is available from [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.fabric8%22%20AND%20a%3A%22gitective-core%22)
 
 ```xml
 <dependency>
-  <groupId>org.gitective</groupId>
+  <groupId>io.fabric8</groupId>
   <artifactId>gitective-core</artifactId>
-  <version>0.9.9</version>
+  <version>0.9.10</version>
 </dependency>
 ```
 
