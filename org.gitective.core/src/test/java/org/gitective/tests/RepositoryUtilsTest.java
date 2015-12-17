@@ -28,12 +28,12 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.lib.RefUpdate;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.eclipse.jgit.storage.file.FileRepository;
 import org.eclipse.jgit.transport.RemoteConfig;
 import org.eclipse.jgit.transport.URIish;
 import org.gitective.core.RepositoryUtils;
@@ -267,24 +267,25 @@ public class RepositoryUtilsTest extends GitTestCase {
 		PersonIdent person1 = new PersonIdent("a", "b1");
 		PersonIdent person2 = new PersonIdent("a", "b2");
 		PersonIdent person3 = new PersonIdent("b", "c1");
-		PersonIdent person4 = new PersonIdent(null, "c2");
+		PersonIdent person4 = new PersonIdent("l", "c2");
 		PersonIdent person5 = new PersonIdent("", "c2");
-		PersonIdent person6 = new PersonIdent("c", null);
+		PersonIdent person6 = new PersonIdent("c", "c2");
 		Map<String, Set<String>> mapped = RepositoryUtils
 				.mapNamesToEmails(Arrays.asList(person1, person2, person3,
 						person4, person5, person6));
 		assertNotNull(mapped);
 		assertFalse(mapped.isEmpty());
-		assertEquals(3, mapped.size());
+		assertEquals(4, mapped.size());
 		assertNotNull(mapped.get("a"));
 		assertEquals(2, mapped.get("a").size());
 		assertNotNull(mapped.get("b"));
 		assertEquals(1, mapped.get("b").size());
 		assertNotNull(mapped.get("c"));
-		assertEquals(0, mapped.get("c").size());
+		assertEquals(1, mapped.get("c").size());
 		assertTrue(mapped.get("a").contains("b1"));
 		assertTrue(mapped.get("a").contains("b2"));
 		assertTrue(mapped.get("b").contains("c1"));
+		assertTrue(mapped.get("l").contains("c2"));
 	}
 
 	/**
@@ -304,23 +305,24 @@ public class RepositoryUtilsTest extends GitTestCase {
 		PersonIdent person1 = new PersonIdent("b1", "a");
 		PersonIdent person2 = new PersonIdent("b2", "a");
 		PersonIdent person3 = new PersonIdent("c1", "b");
-		PersonIdent person4 = new PersonIdent("c2", null);
+		PersonIdent person4 = new PersonIdent("c2", "d");
 		PersonIdent person5 = new PersonIdent("c2", "");
-		PersonIdent person6 = new PersonIdent(null, "c");
+		PersonIdent person6 = new PersonIdent("c2", "c");
 		Map<String, Set<String>> mapped = RepositoryUtils
 				.mapEmailsToNames(Arrays.asList(person1, person2, person3,
 						person4, person5, person6));
 		assertNotNull(mapped);
 		assertFalse(mapped.isEmpty());
-		assertEquals(3, mapped.size());
+		assertEquals(4, mapped.size());
 		assertNotNull(mapped.get("a"));
 		assertEquals(2, mapped.get("a").size());
 		assertNotNull(mapped.get("b"));
 		assertEquals(1, mapped.get("b").size());
 		assertNotNull(mapped.get("c"));
-		assertEquals(0, mapped.get("c").size());
+		assertEquals(1, mapped.get("c").size());
 		assertTrue(mapped.get("a").contains("b1"));
 		assertTrue(mapped.get("a").contains("b2"));
 		assertTrue(mapped.get("b").contains("c1"));
+		assertTrue(mapped.get("c").contains("c2"));
 	}
 }
