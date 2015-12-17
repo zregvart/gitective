@@ -7,7 +7,7 @@
 		<version>7</version>
 	</parent>
 
-	<groupId>org.gitective</groupId>
+	<groupId>io.fabric8</groupId>
 	<artifactId>gitective-core</artifactId>
 	<version>0.9.10-SNAPSHOT</version>
 	<name>gitective core</name>
@@ -16,7 +16,7 @@
 	<inceptionYear>2011</inceptionYear>
 
 	<issueManagement>
-		<url>https://github.com/kevinsawicki/gitective/issues</url>
+		<url>https://github.com/fabric8io/gitective/issues</url>
 		<system>GitHub Issues</system>
 	</issueManagement>
 
@@ -29,9 +29,9 @@
 	</licenses>
 
 	<scm>
-		<url>https://github.com/kevinsawicki/gitective</url>
-		<connection>scm:git:git://github.com/kevinsawicki/gitective.git</connection>
-		<developerConnection>scm:git:git@github.com:kevinsawicki/gitective.git</developerConnection>
+		<url>https://github.com/fabric8io/gitective</url>
+		<connection>scm:git:git://github.com/fabric8io/gitective.git</connection>
+		<developerConnection>scm:git:git@github.com:fabric8io/gitective.git</developerConnection>
 	</scm>
 
 	<developers>
@@ -41,6 +41,13 @@
 			<url>https://github.com/kevinsawicki</url>
 			<id>kevinsawicki</id>
 		</developer>
+                <developer>
+                        <id>geeks</id>
+                        <name>Fabric8 Development Team</name>
+                        <email>fabric8@googlegroups.com</email>
+                        <organization>fabric8</organization>
+                        <organizationUrl>http://fabric8.io/</organizationUrl>
+                </developer>
 	</developers>
 
 	<properties>
