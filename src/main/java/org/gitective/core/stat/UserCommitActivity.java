@@ -56,6 +56,7 @@ public class UserCommitActivity implements Serializable {
 	private int index;
 	private byte[][] commits;
 	private long[] times;
+	private boolean[] merges;
 	private long first = MAX_VALUE;
 	private long last = MIN_VALUE;
 
@@ -70,6 +71,7 @@ public class UserCommitActivity implements Serializable {
 		this.email = email;
 		commits = new byte[SIZE][];
 		times = new long[SIZE];
+		merges = new boolean[SIZE];
 	}
 
 	/**
@@ -113,11 +115,15 @@ public class UserCommitActivity implements Serializable {
 			long[] newTimes = new long[newSize];
 			System.arraycopy(times, 0, newTimes, 0, times.length);
 			times = newTimes;
+			boolean[] newMerges = new boolean[newSize];
+			System.arraycopy(merges, 0, newMerges, 0, merges.length);
+			merges = newMerges;
 		}
 		final byte[] id = new byte[OBJECT_ID_LENGTH];
 		commit.copyRawTo(id, 0);
 		commits[index] = id;
 		times[index] = when;
+		merges[index] = commit.getParentCount() > 1;
 		index++;
 
 		if (when < first)
@@ -159,6 +165,17 @@ public class UserCommitActivity implements Serializable {
 		for (int i = 0; i < index; i++)
 			ids[i] = ObjectId.fromRaw(commits[i]);
 		return ids;
+	}
+
+	/**
+	 * Get merges as array of booleans
+	 *
+	 * @return non-null but possibly empty array
+	 */
+	public boolean[] getMerges() {
+		final boolean[] merges = new boolean[index];
+		System.arraycopy(this.merges, 0, merges, 0, index);
+		return merges;
 	}
 
 	/**
