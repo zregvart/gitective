@@ -145,6 +145,16 @@ public class CommitUtilsTest extends GitTestCase {
 	public void getCommitWithEmptyRevision() throws Exception {
 		CommitUtils.getCommit(new FileRepository(testRepo), "");
 	}
+	
+	/**
+	 * Get commit with non-existant revision 
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void getCommitWithNonExistantRevision() throws Exception {
+		assertEquals(null, CommitUtils.getCommit(new FileRepository(testRepo), "revision"));
+	}
 
 	/**
 	 * Get base with null repository parameter

@@ -67,7 +67,11 @@ public abstract class CommitUtils {
 			throw new IllegalArgumentException(
 					Assert.formatNotEmpty("Revision"));
 
-		return parse(repository, resolve(repository, revision));
+		ObjectId commitId = resolve(repository, revision);
+		if (commitId == null) {
+			return null;
+		}
+		return parse(repository, commitId);
 	}
 
 	/**
